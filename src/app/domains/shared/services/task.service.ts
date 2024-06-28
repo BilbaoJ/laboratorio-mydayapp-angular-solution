@@ -29,4 +29,48 @@ export class TaskService {
     const updatedTasks = [...currentTasks, task];
     this.tasksSubject.next(updatedTasks);
   }
+
+  updateTaskStatus(index: number) {
+    const tasks = this.tasksSubject.getValue();
+    const updatedTasks = tasks.map((task, i) => {
+      if (i === index) {
+        return { ...task, completed: !task.completed };
+      }
+      return task;
+    });
+    this.tasksSubject.next(updatedTasks);
+  }
+
+  updateTaskEditingMode(index: number, editing: boolean) {
+    const tasks = this.tasksSubject.getValue();
+    const updatedTasks = tasks.map((task, i) => {
+      return {
+        ...task,
+        editing: i === index ? editing : false
+      };
+    });
+    this.tasksSubject.next(updatedTasks);
+  }
+
+  updateTaskTitle(index: number, newTitle: string) {
+    const tasks = this.tasksSubject.getValue();
+    const updatedTasks = tasks.map((task, i) => {
+      if (i === index) {
+        return {
+          ...task,
+          title: newTitle,
+          editing: false
+        };
+      }
+      return task;
+    });
+    this.tasksSubject.next(updatedTasks);
+  }
+
+  deleteTask(index: number){
+    const tasks = this.tasksSubject.getValue();
+    const updatedTasks = tasks.filter((task, i)=> i !== index);
+    this.tasksSubject.next(updatedTasks);
+  }
+
 }

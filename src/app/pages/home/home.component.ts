@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { HeaderComponent } from '@shared/header/header.component'
 import { FooterComponent } from '@shared/footer/footer.component'
 import { Task } from 'src/app/models/task.model';
-import { Observable } from 'rxjs';
 import { TaskService } from '@shared/services/task.service';
 
 @Component({
@@ -22,6 +21,23 @@ export class HomeComponent implements OnInit{
     this.taskService.getTasks().subscribe(tasks => {
       this.tasks = tasks;
     });
+  }
+
+  updateStatus(index: number){
+    this.taskService.updateTaskStatus(index);
+  }
+
+  updateEditingMode(index: number){
+    this.taskService.updateTaskEditingMode(index, true);
+  }
+
+  updateTitle(index:number, event:Event){
+    const input = event.target as HTMLInputElement;
+    this.taskService.updateTaskTitle(index, input.value)
+  }
+
+  deleteTask(index:number){
+    this.taskService.deleteTask(index);
   }
 
 }
