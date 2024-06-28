@@ -77,4 +77,14 @@ export class TaskService {
     return this.tasksSubject.value.filter(task => !task.completed).length;
   }
 
+  deleteAllCompleted(){
+    const tasks = this.tasksSubject.getValue();
+    const updatedTasks = tasks.filter((task, i) => task.completed === false);
+    this.tasksSubject.next(updatedTasks);
+  }
+
+  getCompletedTasks() {
+    return this.tasksSubject.value.filter(task => task.completed).length;
+  }
+
 }

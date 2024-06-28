@@ -14,6 +14,7 @@ export class FooterComponent implements OnInit{
 
   tasks: Task[] = [];
   pendingTasks!: number;
+  completedTasks!: number;
 
   constructor(private taskService: TaskService) {}
 
@@ -21,6 +22,7 @@ export class FooterComponent implements OnInit{
     this.taskService.getTasks().subscribe(tasks => {
       this.tasks = tasks;
       this.updatePendingTasks();
+      this.updateCompletedTasks();
     });
   }
 
@@ -28,7 +30,15 @@ export class FooterComponent implements OnInit{
     this.pendingTasks = this.taskService.getPendingTasks();
   }
 
+  updateCompletedTasks(){
+    this.completedTasks = this.taskService.getCompletedTasks();
+  }
+
   wordItem(){
     return this.pendingTasks === 1 ? 'item' : 'items';
+  }
+
+  deleteAllCompleted(){
+    this.taskService.deleteAllCompleted();
   }
 }
