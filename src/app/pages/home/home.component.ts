@@ -8,7 +8,7 @@ import { TaskService } from '@shared/services/task.service';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [ FooterComponent, HeaderComponent, CommonModule  ],
+  imports: [ FooterComponent, HeaderComponent, CommonModule ],
   templateUrl: './home.component.html',
 })
 export class HomeComponent implements OnInit{
@@ -27,8 +27,8 @@ export class HomeComponent implements OnInit{
     this.taskService.updateTaskStatus(index);
   }
 
-  updateEditingMode(index: number){
-    this.taskService.updateTaskEditingMode(index, true);
+  updateEditingMode(index: number, editing: boolean){
+    this.taskService.updateTaskEditingMode(index, editing);
   }
 
   updateTitle(index:number, event:Event){
