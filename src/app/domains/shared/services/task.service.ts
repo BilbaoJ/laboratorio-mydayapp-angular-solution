@@ -73,4 +73,8 @@ export class TaskService {
     this.tasksSubject.next(updatedTasks);
   }
 
+  getPendingTasks() {
+    return this.tasksSubject.value.filter(task => !task.completed).length;
+  }
+
 }

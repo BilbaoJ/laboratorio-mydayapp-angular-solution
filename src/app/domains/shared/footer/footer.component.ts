@@ -13,12 +13,22 @@ import { CommonModule } from '@angular/common';
 export class FooterComponent implements OnInit{
 
   tasks: Task[] = [];
+  pendingTasks!: number;
 
   constructor(private taskService: TaskService) {}
 
   ngOnInit(){
     this.taskService.getTasks().subscribe(tasks => {
       this.tasks = tasks;
+      this.updatePendingTasks();
     });
+  }
+
+  updatePendingTasks(){
+    this.pendingTasks = this.taskService.getPendingTasks();
+  }
+
+  wordItem(){
+    return this.pendingTasks === 1 ? 'item' : 'items';
   }
 }
