@@ -4,6 +4,7 @@ import { HeaderComponent } from '@shared/header/header.component'
 import { FooterComponent } from '@shared/footer/footer.component'
 import { Task } from 'src/app/models/task.model';
 import { TaskService } from '@shared/services/task.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -14,12 +15,19 @@ import { TaskService } from '@shared/services/task.service';
 export class HomeComponent implements OnInit{
 
   tasks: Task[] = [];
+  filteredTasks: Task[] = [];
+  filter: string =''
 
-  constructor(private taskService: TaskService) {}
+  constructor(private taskService: TaskService, private route: ActivatedRoute) {}
 
   ngOnInit(){
     this.taskService.getTasks().subscribe(tasks => {
       this.tasks = tasks;
+      this.applyFilter();
+    });
+
+    this.route.url.subscribe(() => {
+      this.applyFilter();
     });
   }
 
@@ -40,4 +48,17 @@ export class HomeComponent implements OnInit{
     this.taskService.deleteTask(index);
   }
 
+  applyFilter() {
+    const url = this.route.snapshot.url.join('/');
+    if (url === 'pending') {
+      this.filter = 'pending'
+      this.filteredTasks = this.tasks.filter(task => !task.completed);
+    } else if (url === 'completed') {
+      this.filter = 'completed'
+      this.filteredTasks = this.tasks.filter(task => task.completed);
+    } else {
+      this.filter = 'all'
+      this.filteredTasks = this.tasks;
+    }
+  }
 }

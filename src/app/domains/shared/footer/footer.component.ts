@@ -1,17 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { TaskService } from '@shared/services/task.service';
 import { Task } from 'src/app/models/task.model';
 import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router'
 
 @Component({
   selector: 'app-footer',
-  imports: [ CommonModule ],
+  imports: [ CommonModule, RouterLink ],
   standalone: true,
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.css']
 })
 export class FooterComponent implements OnInit{
 
+  @Input() filter = '';
   tasks: Task[] = [];
   pendingTasks!: number;
   completedTasks!: number;

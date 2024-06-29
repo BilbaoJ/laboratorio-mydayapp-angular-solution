@@ -8,7 +8,10 @@ const routes: Routes = [
     path: '',
     component: HomeComponent,
     pathMatch: 'full'
-  }
+  },
+  { path: 'all', component: HomeComponent },
+  { path: 'pending', component: HomeComponent },
+  { path: 'completed', component: HomeComponent }
 ];
 
 @NgModule({
