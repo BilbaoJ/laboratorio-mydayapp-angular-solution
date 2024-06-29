@@ -41,7 +41,10 @@ export class HomeComponent implements OnInit{
 
   updateTitle(index:number, event:Event){
     const input = event.target as HTMLInputElement;
-    this.taskService.updateTaskTitle(index, input.value)
+    const value = input.value.trim();
+      if (value !== '') {
+        this.taskService.updateTaskTitle(index, value)
+      }
   }
 
   deleteTask(index:number){
