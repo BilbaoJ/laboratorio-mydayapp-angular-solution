@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { TaskService } from '@shared/services/task.service';
-import { Task } from 'src/app/models/task.model';
+import { Task } from '@shared/models/task.model';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router'
 

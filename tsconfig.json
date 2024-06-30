@@ -24,6 +24,7 @@
     ],
     "useDefineForClassFields": false,
     "paths": {
+      "@todo/*":["./src/app/domains/todo/*"],
       "@shared/*":["./src/app/domains/shared/*"],
       "@assets/*":["./src/assets/*"]
     }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TaskService } from '@shared/services/task.service';
 import { Observable } from 'rxjs';
-import { Task } from 'src/app/models/task.model';
+import { Task } from '@shared/models/task.model';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({

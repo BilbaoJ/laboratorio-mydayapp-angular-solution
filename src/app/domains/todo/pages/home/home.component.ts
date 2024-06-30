@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HeaderComponent } from '@shared/header/header.component'
-import { FooterComponent } from '@shared/footer/footer.component'
-import { Task } from 'src/app/models/task.model';
+import { HeaderComponent } from '@shared/components/header/header.component'
+import { FooterComponent } from '@shared/components/footer/footer.component'
+import { Task } from '@shared/models/task.model';
 import { TaskService } from '@shared/services/task.service';
 import { ActivatedRoute } from '@angular/router';
 
